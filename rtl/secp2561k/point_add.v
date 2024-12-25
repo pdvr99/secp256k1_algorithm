@@ -8,8 +8,6 @@ module point_add (
 );
 
     wire [255:0] lamda; 
-    wire [255:0] x3; 
-    wire [255:0] y3; 
     wire [255:0] numerator; 
     wire [255:0] denominator;
 
