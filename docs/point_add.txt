@@ -1,0 +1,13 @@
+Let's say we have two points...
+
+P = (x1, y1) & Q = (x2, y2)
+
+p = 2^256 - 2^32 - 977 --> This is the large prime number used in secp256k1 algorithm...
+
+lamda = (y2 - y1)/(x2 -x1) (mod p)
+
+x3 = (lamda)^2 - x1 - x2 (mod p)
+
+y3 = lamda * (x1 - x3) - y1 (mod p)
+
+The x and y components of the points are 256 bits each respectively...
