@@ -13,7 +13,7 @@ module point_add (
 
     wire [255:0] r0, r1, r2, r3, r4, r5;
 
-    mod_sub y2y1(.x(y2), .y(y1), .difference(numerator)));
+    mod_sub y2y1(.x(y2), .y(y1), .difference(numerator));
     mod_sub x2x1(.x(x2), .y(x1), .difference(denominator));
 
     mod_inv inverse(.input_num(denominator), .inverse(lamda)); 
