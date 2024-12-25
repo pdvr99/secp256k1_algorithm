@@ -1,0 +1,7 @@
+Let us say P = 1...
+
+lamda = (3 * (x1)^2)/y1
+
+x3 = (lamda)^2 - 2 * x1
+
+y3 = (lamda) * (x1 - x3) - y1
