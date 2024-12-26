@@ -1,0 +1,13 @@
+Multiply a point P by a scalar k to get another point Q on the curve 
+
+Q = k * P
+
+Can use the Double-and-Add Algorithm...
+    - Essentially adding P k-times.
+
+    -Steps 
+        - Start with Q = 0
+
+        For each bit in k...
+        - Even if the leading bit is not 1, P = 2P
+        - If leading bit is 1, then Q = Q + P 
