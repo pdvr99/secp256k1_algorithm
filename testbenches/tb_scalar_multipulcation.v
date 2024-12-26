@@ -5,8 +5,8 @@ module tb_scalar_multipulcation;
     //input signals 
     reg [255:0] x1, y1; 
     reg [255:0] k; 
-    reg [255:0] clk; 
-    reg [255:0] reset; 
+    reg clk; 
+    reg reset; 
 
     //output signal 
     wire [255:0] x_out, y_out; 
