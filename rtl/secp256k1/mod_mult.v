@@ -1,4 +1,4 @@
-module mod_sub(
+module mod_mult(
     input [255:0] x, 
     input [255:0] y, 
     output reg [255:0] product
