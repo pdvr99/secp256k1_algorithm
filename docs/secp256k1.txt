@@ -1,6 +1,6 @@
 Step 1: 
     - Start with P (x1, y1)
-    - Initlaize a point at inifinity (Let's call this R) --> This will be th eresults
+    - Initlaize a point at inifinity (Let's call this R) --> This will be the results
 
 Step 2: 
     - Go through all bits in k...
@@ -8,4 +8,4 @@ Step 2:
         - Add if current bit in k is 1 --> R = R + P 
 
 Step 3: 
-    - Get the resulting point, which si the public key. 
+    - Get the resulting point, which is the public key. 

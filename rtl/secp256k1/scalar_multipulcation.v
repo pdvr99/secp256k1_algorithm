@@ -3,52 +3,76 @@ module scalar_multipulcation(
     input [255:0] y1,
     input [255:0] k,
     output [255:0] x_output,
-    input [255:0] y_output
+    input [255:0] y_output,
+    input clk, 
+    input reset
 ); 
 
-reg [255:0] x_curr, y_curr; 
-reg [255:0] x_P, y_P;
+//P is current point and R is resulting point
+
+reg [255:0] x_curr = x1;
+reg [255:0] y_curr = y1;
+reg [255:0] x_R; 
+reg [255:0] y_R;
 
 
 reg [7:0] counter;
 reg [255:0] k_bit;
+reg [255:0] k_reg;
 
 
 //temporary registers
 reg [255:0] r0, r1; 
 
-//Q = Q + P
-point_add add(.x1(x_curr), .y1(y_curr), .x2(x_P), .y2(y_P), .x3(r0), .y3(r1));
-point_add double(.x1(x_P), .y1(y_P), .x3(r0), .y3(r1));
+wire [255:0] x_add, y_add; 
+
+wire [255:0] x_double, y_double; 
+
+
+//R = R + P
+point_add add(.x1(x_curr), .y1(y_curr), .x2(x_R), .y2(y_R), .x3(x_add), .y3(y_add));
+
+//P = 2P
+point_add double(.x1(x_curr), .y1(y_curr), .x3(x_double), .y3(y_double));
 
 
 
-always @(*) begin
-    x_output = 256'b0; 
-    y_output = 256'b0; 
+always @(posedge clk or posedge reset) begin
+    if(reset) begin
+        x_output <= 256'b0; 
+        y_output <= 256'b0; 
+        x_R <= 256'b0; 
+        y_R <= 256'b0;
+        x_curr <= x1; 
+        y_curr <= y1; 
+        counter <= 8'd255; //b'11111111 = d'255
+        k_reg <= k;
+    end else if(counter >=  0) begin
+        k_bit = k_reg[counter];
 
-
-    for(i = 255; i >= 0; i = i = i-1) begin 
-        k_bit = k[i]; 
-
-        //Double (P = 2P)
+        //Double 
         double.x1 = x_curr; 
         double.y1 = y_curr; 
-        x_P = r0; 
-        y_P = r1;
+        x_curr <= x_double; 
+        y_curr <= y_double; 
 
-
-        //Add if current bit in k is 1 (Q = Q + P)
-        if(k[i] == 0'b1) begin 
-            add.x1 = x_output; 
-            add.y1 = y_output; 
-            add.x2 = x_P; 
-            add.y2 = y_P; 
-            x_output = r0; 
-            y_output = r1;  
+        //Add
+        if(k_bit == 1) begin 
+            add.x1 = x_curr; 
+            add.y1 = y_curr;
+            add.x2 = x_R; 
+            add.y2 = x_R;  
+            x_R <= x_add; 
+            y_R <= y_add; 
         end
+        
+        counter <= counter - 1; 
     end
 end
+
+assign x_output = x_R;
+assign y_output = y_R;  
+        
 
 
 
