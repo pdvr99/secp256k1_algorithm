@@ -11,7 +11,7 @@ module point_double (
 
     wire [255:0] r0, r1, r2, r3, r4, r5, r6, r7;
 
-    r0 = 256'd3
+    r0 = 256'd3;
 
     mod_mult mult1(.x(r0), .y(x1), product(r1));
     mod_mult mult1(.x(r1), .y(x1), product(r2));
