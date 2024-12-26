@@ -1,6 +1,6 @@
 'timescale 1ns / 1ps
 
-module tb_mod_add(); 
+module tb_mod_sub(); 
 
     //input signals 
     reg [255:0] x, y; 
@@ -10,7 +10,7 @@ module tb_mod_add();
     //output signals 
     wire [255:0] out; 
 
-    mod_add uut(.x(x), .y(y), .sum(out)); 
+    mod_sub uut(.x(x), .y(y), .difference(out)); 
 
     always begin 
         #5 clk = ~clk;
