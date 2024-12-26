@@ -12,6 +12,8 @@ reg [255:0] reset;
 //output 
 wire [255:0] x_out, y_out; 
 
+secp256k1 uut(.x1(x1), .y1(y1), .k(k), .x_result(x_out), .y_result(y_out), .clk(clk), .reset(reset));
+
 always begin 
     #5 clk = ~clk; 
 end
