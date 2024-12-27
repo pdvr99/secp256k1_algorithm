@@ -6,7 +6,7 @@ module tb_point_add();
     reg [255:0] x1, y1; 
     reg [255:0] x2, y2;
 
-    reg clk, rest 
+    reg clk, reset; 
 
     //output
     wire [255:0] x3, y3;
