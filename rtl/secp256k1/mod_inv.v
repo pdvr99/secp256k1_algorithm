@@ -83,13 +83,13 @@ always @(state or start or a or b or c1 or c2 or r0 or r1 or r2 or r3) begin
             if(b == 0) begin
                 inverse = c1; 
                 done = 1; 
-                next_state = DONE; 
+                next_state = COMPLETE; 
             end else begin 
-                next_state = COMPUTE; 
+                next_state = CALCULATE; 
             end
         end
 
-        DONE: 
+        COMPLETE: 
         begin 
             next_state = WAIT; //Reset to WAIT state after finishing
         end
