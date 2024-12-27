@@ -11,15 +11,13 @@ module mod_inv(
 
 parameter p = 256'hFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFEFFFFFC2F;
 
-//State Machine states
-typedef enum reg [1:0] {
-    WAIT = 2'b00; 
-    CALCULATE = 2'b01; 
-    SUBSITUTE = 2'b10; 
-    COMPLETE = 2'b11; 
-} state_t; 
+reg [1:0] state, next_state; 
 
-state_t state, next_state; 
+//State Machine states
+localparam WAIT = 2'b00,
+    CALCULATE = 2'b01,
+    SUBSITUTE = 2'b10, 
+    COMPLETE = 2'b11; 
 
 //registers and coefficients
 reg [255:0] a, b; // gcd(a,b)
