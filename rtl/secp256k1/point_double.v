@@ -13,8 +13,8 @@ module point_double (
 
     assign r0 = 256'd3;
 
-    mod_mult mult1(.x(r0), .y(x1), product(r1));
-    mod_mult mult2(.x(r1), .y(x1), product(r2));
+    mod_mult mult1(.x(r0), .y(x1), .product(r1));
+    mod_mult mult2(.x(r1), .y(x1), .product(r2));
 
     assign numerator = r2; 
 
