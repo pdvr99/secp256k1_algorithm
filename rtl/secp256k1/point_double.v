@@ -11,12 +11,12 @@ module point_double (
 
     wire [255:0] r0, r1, r2, r3, r4, r5, r6, r7;
 
-    r0 = 256'd3;
+    assign r0 = 256'd3;
 
     mod_mult mult1(.x(r0), .y(x1), product(r1));
-    mod_mult mult1(.x(r1), .y(x1), product(r2));
+    mod_mult mult2(.x(r1), .y(x1), product(r2));
 
-    numerator = r2; 
+    assign numerator = r2; 
 
     mod_inv inverse(.input_num(y1), .inverse(denominator)); 
 
@@ -24,7 +24,7 @@ module point_double (
 
     //x3
     mod_mult x3_mult1(.x(lamda), .y(lamda), .product(r3));
-    r4 = 256'd2; 
+    assign r4 = 256'd2; 
     mod_mult x3_mult2(.x(r4), .y(x1), .product(r5));
     mod_sub x3_sub(.x(r3), .y(x5), .difference(x3)); 
 
