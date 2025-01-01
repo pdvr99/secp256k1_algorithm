@@ -47,12 +47,12 @@ always @(state or start or a or b or c1 or c2 or r0 or r1 or r2 or r3) begin
         WAIT: 
         begin 
             if (start) begin 
-                a = input_num; 
-                b = p; 
-                c1 = 256'b1; //Coefficient for a (c1 = 1)
-                c2 = 256'b0; //Coefficient for b (c2 = 0)
+                a <= input_num; 
+                b <= p; 
+                c1 <= 256'b1; //Coefficient for a (c1 = 1)
+                c2 <= 256'b0; //Coefficient for b (c2 = 0)
                 next_state = CALCULATE; 
-                done = 0; 
+                done <= 0; 
             end else begin 
                 next_state = WAIT; 
             end
@@ -61,28 +61,28 @@ always @(state or start or a or b or c1 or c2 or r0 or r1 or r2 or r3) begin
         CALCULATE: 
         begin 
             if (a >= b) begin 
-                r0 = a - b; 
-                r2 = c1 - c2; 
+                r0 <= a - b; 
+                r2 <= c1 - c2; 
                 next_state = CALCULATE; 
             end else begin 
-                r0 = b;
-                r1 = a;
-                r2 = c2;
-                r3 = c1;
+                r0 <= b;
+                r1 <= a;
+                r2 <= c2;
+                r3 <= c1;
                 next_state = SUBSITUTE; 
             end
         end
 
         SUBSITUTE: 
         begin
-            a = r0; 
-            b = r1; 
-            c1 = r2; 
-            c2 = r3; 
+            a <= r0; 
+            b <= r1; 
+            c1 <= r2; 
+            c2 <= r3; 
 
             if(b == 0) begin
-                inverse = c1; 
-                done = 1; 
+                inverse <= c1; 
+                done <= 1; 
                 next_state = COMPLETE; 
             end else begin 
                 next_state = CALCULATE; 
