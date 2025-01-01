@@ -3,14 +3,14 @@
 module tb_mod_add(); 
 
     //input signals 
-    reg [255:0] x, y; 
+    reg [255:0] x1, y1; 
     reg clk; 
     reg reset; 
 
     //output signals 
     wire [255:0] out; 
 
-    mod_add uut(.x(x), .y(y), .sum(out)); 
+    mod_add uut(.x(x1), .y(y1), .sum(out)); 
 
     always begin 
         #5 clk = ~clk;
